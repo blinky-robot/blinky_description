@@ -49,8 +49,9 @@
 
   <link name="front_right_steering"/>
 
-  <joint name="front_right_steering_joint" type="continuous">
-    <axis xyz="0 0 1"/>
+  <joint name="front_right_steering_joint" type="revolute">
+    <limit lower="-1.57075" upper="1.57075" effort="-1" velocity="-1"/>
+    <axis xyz="0 0 -1"/>
     <parent link="base_link"/>
     <child link="front_right_steering"/>
     <origin xyz=".14 -0.1 -.05"/>
@@ -74,8 +75,9 @@
 
   <link name="front_left_steering"/>
  
-  <joint name="front_left_steering_joint" type="continuous">
-    <axis xyz="0 0 1"/>
+  <joint name="front_left_steering_joint" type="revolute">
+    <limit lower="-1.57075" upper="1.57075" effort="-1" velocity="-1"/>
+    <axis xyz="0 0 -1"/>
     <parent link="base_link"/>
     <child link="front_left_steering"/>
     <origin xyz=".14 .1 -.05"/>
@@ -91,11 +93,87 @@
     </visual>
   </link>
 
-
   <joint name="front_left_wheel_joint" type="continuous">
     <axis xyz="0 1 0"/>
     <parent link="front_left_steering"/>
     <child link="front_left_wheel"/>
+  </joint>
+
+  <link name="steering_servo">
+    <visual>
+      <geometry>
+        <box size=".04 .02 .01"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0 110 0 .5"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="steering_servo_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="steering_servo"/>
+    <origin xyz=".08 0 -.04"/>
+  </joint>
+
+  <link name="steering_servo_arm">
+    <visual>
+      <geometry>
+        <box size=".005 .005 .015"/>
+      </geometry>
+      <material name="red">
+        <color rgba="150 0 0 .7"/>
+      </material>
+      <origin xyz="0 0 .005"/>
+    </visual>
+  </link>
+
+  <joint name="steering_servo_arm_joing" type="revolute">
+    <limit lower="-0.7854" upper="0.7854" effort="-1" velocity="-1"/>
+    <parent link="steering_servo"/>
+    <child link="steering_servo_arm"/>
+    <origin xyz=".021 0 .005"/>
+  </joint>
+
+  <link name="lidar">
+    <visual>
+      <geometry>
+        <cylinder length=".02" radius=".05"/>
+      </geometry>
+      <material name="purple">
+        <color rgba="50 0 100 .7"/>
+      </material>
+    </visual>
+  </link> 
+
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar"/>
+    <origin xyz="-.06 0 .05"/>
+  </joint>  
+
+  <sensor name="lidar_sensor" update_rate="5">
+    <parent link="lidar"/>
+    <ray>
+      <horizontal/>
+    </ray>
+  </sensor>
+
+  <link name="imu">
+    <visual>
+      <geometry>
+        <box size=".02 .01 .005"/>
+      </geometry>
+      <material name="orange">
+        <color rgba="255 128 0 .7"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu"/>
+    <origin xyz=".16 0 .05"/>
   </joint>
 </robot>
 
