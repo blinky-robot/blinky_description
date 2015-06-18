@@ -128,7 +128,7 @@
     </visual>
   </link>
 
-  <joint name="steering_servo_arm_joing" type="revolute">
+  <joint name="steering_servo_arm_joint" type="revolute">
     <limit lower="-0.7854" upper="0.7854" effort="-1" velocity="-1"/>
     <parent link="steering_servo"/>
     <child link="steering_servo_arm"/>
