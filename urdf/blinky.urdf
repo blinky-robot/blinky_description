@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <robot name="blinky">
+  <link name="base_footprint" />
+
   <link name="base_link">
     <visual>
       <geometry>
@@ -10,6 +12,12 @@
       </material>
     </visual>
   </link>
+
+  <joint name="base_link_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 .1"/>
+  </joint>
 
   <link name="rear_right_wheel">
     <visual>
