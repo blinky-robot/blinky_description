@@ -59,7 +59,7 @@
 
   <joint name="front_right_steering_joint" type="revolute">
     <limit lower="-1.57075" upper="1.57075" effort="-1" velocity="-1"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="front_right_steering"/>
     <origin xyz=".14 -0.1 -.05"/>
@@ -85,7 +85,7 @@
  
   <joint name="front_left_steering_joint" type="revolute">
     <limit lower="-1.57075" upper="1.57075" effort="-1" velocity="-1"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="front_left_steering"/>
     <origin xyz=".14 .1 -.05"/>
