@@ -124,24 +124,65 @@
     <origin xyz=".08 0 -.04"/>
   </joint>
 
-  <link name="steering_servo_arm">
-    <visual>
-      <geometry>
-        <box size=".005 .005 .015"/>
-      </geometry>
-      <material name="red">
-        <color rgba="150 0 0 .7"/>
-      </material>
-      <origin xyz="0 0 .005"/>
-    </visual>
-  </link>
+  <transmission name="front_left_steering_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_steering_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="steering_servo">
+      <mechanicalReduction>-2.35</mechanicalReduction>
+    </actuator>
+  </transmission>
 
-  <joint name="steering_servo_arm_joint" type="revolute">
-    <limit lower="-0.7854" upper="0.7854" effort="-1" velocity="-1"/>
-    <parent link="steering_servo"/>
-    <child link="steering_servo_arm"/>
-    <origin xyz=".021 0 .005"/>
-  </joint>
+  <transmission name="front_right_steering_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_steering_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="steering_servo">
+      <mechanicalReduction>-2.35</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="front_left_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="drive_motor">
+      <mechanicalReduction>13.0</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="front_right_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="drive_motor">
+      <mechanicalReduction>13.0</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="rear_left_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rear_left_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="drive_motor">
+      <mechanicalReduction>13.0</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="rear_right_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rear_right_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="drive_motor">
+      <mechanicalReduction>13.0</mechanicalReduction>
+    </actuator>
+  </transmission>
 
   <link name="lidar">
     <visual>
